@@ -25,33 +25,37 @@ javascript: (function() {
         return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     }
 
-    function getDateTime() {
-        var now = new Date();
-        var day = now.getDate();
-        var month = now.getMonth() + 1;
-        var year = now.getFullYear();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        var second = now.getSeconds();
-        var millis = now.getMilliseconds();
-        if (day.toString().length == 1) {
-            var day = '0' + day;
-        }
-        if (month.toString().length == 1) {
-            var month = '0' + month;
-        }
-        if (hour.toString().length == 1) {
-            var hour = '0' + hour;
-        }
-        if (minute.toString().length == 1) {
-            var minute = '0' + minute;
-        }
-        if (second.toString().length == 1) {
-            var second = '0' + second;
-        }
-        var dateTime = day + month + year + hour + minute + second + millis;
-        return dateTime;
+function getDateTime() {
+    var now = new Date();
+    var day = now.getDate();
+    var month = now.getMonth() + 1;
+    var year = now.getFullYear();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+
+    if (day < 10) {
+        day = '0' + day;
     }
+
+    if (month < 10) {
+        month = '0' + month;
+    }
+
+    if (hour < 10) {
+        hour = '0' + hour;
+    }
+
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
+
+    if (second < 10) {
+        second = '0' + second;
+    }
+
+    return [day, month, year, hour, minute, second].join('');
+}
 
     function getStartDate() {
         var now = new Date();
